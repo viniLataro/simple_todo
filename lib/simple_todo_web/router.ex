@@ -14,6 +14,12 @@ defmodule SimpleTodoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", SimpleTodoWeb do
+    pipe_through :api
+
+    resources "/tasks", TaskController, except: [:new, :edit]
+  end
+
   scope "/", SimpleTodoWeb do
     pipe_through :browser
 
